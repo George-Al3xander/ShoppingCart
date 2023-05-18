@@ -1,6 +1,3 @@
-import React, { useState } from 'react'
-import Cart from './components/Cart';
-
 import watch1 from "./assets/img_products/img_watch_1.jpg"
 import watch2 from "./assets/img_products/img_watch_2.jpg"
 import watch3 from "./assets/img_products/img_watch_3.jpg"
@@ -10,6 +7,14 @@ import watch6 from "./assets/img_products/img_watch_6.jpg"
 import watch7 from "./assets/img_products/img_watch_7.jpg"
 import watch8 from "./assets/img_products/img_watch_8.jpg"
 import watch9 from "./assets/img_products/img_watch_9.jpg"
+
+import React, { useState } from 'react'
+import Cart from './components/Cart';
+import NavBar from './components/NavBar';
+import { Route,Routes, Link } from "react-router-dom"
+import Catalog from "./components/Catalog"
+import Homepage from "./components/Homepage"
+
 
 
 
@@ -28,7 +33,7 @@ function App() {
         img: watch2
       },
       {
-        name: "Hamilton Intra-Matic Auto Chrono",
+        name: "Breitling Premier B01",
         price: 2245,
         quantity: 1,
         img: watch3
@@ -46,7 +51,7 @@ function App() {
         img: watch5
       },
       {
-        name: "Breitling Premier B01",
+        name: "Hamilton Intra-Matic Auto Chrono ",
         price: 8500,
         quantity: 1,
         img: watch6
@@ -58,7 +63,7 @@ function App() {
         img: watch7
       },
       {
-        name: "Citizen Promaster Diver",
+        name: "Citizen Promaster Diver Gold Edition",
         price: 1050,
         quantity: 1,
         img: watch8
@@ -75,11 +80,28 @@ function App() {
     const[total, setTotal] = useState(0);
     const[order, setOrder] = useState([]);
 
+    const addToCart = (e) => {
+      let num = e.target.id;
+      num = num.split("-")[1];
+      console.log(num);
+      let tempArray = [...order];
+
+      tempArray.push(products[num]);
+      setOrder(tempArray);
+    }
+    
+
 
     return(
-      <>
-        <Cart order={products}/>
-      </>
+      <div className="main">
+        <NavBar quantity={0} />
+        <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/catalog" element={<Catalog products={products} onclick={addToCart} />} />
+        </Routes>       
+        <Cart order={order}/>
+      </div>
+      
     )
 
 

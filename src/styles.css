@@ -40,19 +40,135 @@
 
 :root {
     --ff-default:   'Roboto', sans-serif;
+    --ff-secondary:  'Raleway', sans-serif;
 
 }
 
 body {
-    font-family: var(--ff-default);
+    font-family: var(--ff-default);  
+}
+
+.logo {
+    font-family: var(--ff-secondary);
+    font-weight: 800;
+    font-size: 2rem;
 }
 
 
+
+.nav-bar,.nav-cart {
+  transition: all .5s ease;
+
+  display: flex;
+}
+
+.nav-bar {
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+}
+
+.nav-bar svg {
+  fill: white;
+}
+
+.nav-cart:hover {
+  cursor: pointer;
+  opacity: .7;
+  scale: 1.1;
+  transition: all .5s ease;
+}
+
+.homepage {
+  position: relative;
+  color: white;
+  font-size: 2rem;
+  display: flex;
+}
+
+.homepage-content {
+  z-index: 111;
+}
+
+.watch-name {
+  font-weight: 500;
+  letter-spacing: .1rem;
+  margin-bottom: 1rem;
+}
+
+.watch-text {
+  padding-block: 1rem;
+}
+.price{  
+  font-weight: 900;
+  font-style: italic;
+}
 .price::before {
-    content: "$";
+  content: "$";
 }
 
-img {
-    
+.watch img {
+  border-radius: 1rem;
 }
+
+.btn-add {
+  color: white;
+  background-color: black;
+  width: 100%;
+  text-align: center;
+}
+
+.catalog {
+  padding: 3rem 15%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "watch1 watch2 watch3"
+  "watch4 watch5 watch6"
+  "watch7 watch8 watch9"  
+  ;
+
+  column-gap: 3rem;
+  row-gap: 3rem;
+
+
+}
+
+#watch_1 {
+  grid-area: watch1;
+}
+
+#watch_2 {
+  grid-area: watch2;
+}
+
+#watch_3 {
+  grid-area: watch3;
+}
+
+#watch_4 {
+  grid-area: watch4;
+}
+
+#watch_5 {
+  grid-area: watch5;
+}
+
+#watch_6 {
+  grid-area: watch6;
+}
+
+#watch_7 {
+  grid-area: watch7;
+}
+
+#watch_8 {
+  grid-area: watch8;
+}
+
+#watch_9 {
+  grid-area: watch9;
+}
+
 
