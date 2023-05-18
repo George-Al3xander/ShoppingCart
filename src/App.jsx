@@ -78,28 +78,35 @@ function App() {
 
 
     const[total, setTotal] = useState(0);
+    const[totalQuantity, setTotalQuantity] = useState(0);
     const[order, setOrder] = useState([]);
+    const[isCartShown, setIsCartShown] = useState(false);
 
     const addToCart = (e) => {
       let num = e.target.id;
       num = num.split("-")[1];
-      console.log(num);
+     
       let tempArray = [...order];
-
       tempArray.push(products[num]);
       setOrder(tempArray);
+      
+      setTotalQuantity((prev) => prev + 1);
     }
     
-
+    const hideCart = (e) => {
+      if(e.target.id == "background") {
+        setIsCartShown(false);
+      }
+    }
 
     return(
       <div className="main">
-        <NavBar quantity={0} />
+        <NavBar showCart={()=>{setIsCartShown(true)}} quantity={totalQuantity} />
         <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/catalog" element={<Catalog products={products} onclick={addToCart} />} />
         </Routes>       
-        <Cart order={order}/>
+        {isCartShown ? <Cart order={order} hideCart={hideCart}/> : null}
       </div>
       
     )
