@@ -93,12 +93,66 @@ body {
 .homepage {
   position: relative;
   color: white;
-  font-size: var(--fs-medium);
+  font-size: var(--fs-medium);  
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  justify-content: center;
+  background-attachment: scroll;
+  padding-top: 5rem;
+}
+
+.homepage aside {
+  line-height: 1.5;
   display: flex;
+  flex-direction: column;
+  text-align: right;
+  padding: 1rem;
+  transition: all .5s ease;
+  
+}
+
+.homepage aside p {
+  font-size: 1.5rem;
+  font-family: var(--ff-secondary);
+}
+
+.homepage aside h2 {
+  font-style: italic;
+}
+
+
+.homepage button {
+  
+  padding: 1rem 2rem;
+  width: min-content;
+  white-space: nowrap;
+  margin-inline-end: auto;  
+  font-family: var(--ff-secondary);
+  border-radius: 1rem;
+  transition: all .5s ease;
+}
+
+.homepage button:hover {
+  cursor: pointer;
+  transition: all .5s ease;
+  letter-spacing: .3rem;
+  color: black;
+  font-weight: 900;
+  opacity: .7;
+  background-color: white;
 }
 
 .homepage-content {
-  z-index: 111;
+  display: flex;
+  flex-direction: column; 
+  padding-inline: 1rem; 
+  gap: 8rem;
+}
+
+.watch {
+  transition: all .5s ease;
 }
 
 .watch-name {
@@ -122,11 +176,21 @@ body {
   border-radius: 1rem;
 }
 
+
+
 .btn-add {
   color: white;
   background-color: black;
   width: 100%;
   text-align: center;
+  padding: .5rem;
+  transition: all .5s ease;
+}
+
+.btn-add:hover {
+  cursor: pointer;
+  transition: all .5s ease;
+  letter-spacing: .3rem;
 }
 
 .catalog {
@@ -140,10 +204,8 @@ body {
   "watch7 watch8 watch9"  
   ;
 
-  column-gap: 3rem;
-  row-gap: 3rem;
-
-
+  column-gap: 5rem;
+  row-gap: 5rem;
 }
 
 .cart-div {
@@ -152,7 +214,7 @@ body {
   margin-inline: auto;
   top: 0;
   width: 100%;
-  height: 200vh;
+  height: 210vh;
   display: flex;
   justify-content: flex-end;
   color: white;
@@ -199,24 +261,35 @@ body {
 .cart {
   background-color: white;
   color: black; 
-    
+  position: fixed;
   height: 100%;
   padding: 2rem;
+
+  overflow: scroll;
+
 }
+
+.cart::-webkit-scrollbar {
+  display: none;
+}
+
 
 .cart h1 {
   font-size: var(--fs-medium);
 }
 
 .cart-items {
-  overflow: scroll;
-  height: 30%;
   padding: 2rem;
 }
 
+
 .cart-item {
   margin-block: 2rem;
-  gap: 1rem;
+  gap: 2rem;
+  background-color: wheat;
+  padding: 1rem;
+  border-radius: 1rem;
+
 }
 
 .cart-item h1 {
@@ -229,9 +302,29 @@ body {
 }
 
 .cart-item img {
-  max-width: 10rem;
+  max-width: 8rem;
+  border-radius: 1rem;
 }
 
 .cart-item-right {
   flex-direction: column;
 }
+
+.cart-item-right > * {
+  margin-bottom: 1rem;
+}
+
+
+.buttons {
+  display: flex;
+  gap: .3rem;
+}
+
+.buttons img {
+  background-color: lightgray;
+}
+
+.buttons img:hover {
+  cursor: pointer;
+}
+

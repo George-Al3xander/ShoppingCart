@@ -1,5 +1,6 @@
 import React from "react"
-
+import signAdd from "../assets/icons/icon_sign_add.svg"
+import signRemove from "../assets/icons/icon_sign_remove.svg"
 const CartItems = (props) => {
 
     return(
@@ -13,13 +14,13 @@ const CartItems = (props) => {
                     </div>
                     <div className="cart-item-right">
                         <h1>{item.name}</h1>
-                        <h2 className="price">{item.price}</h2>                                
-                    <div className="buttons">
-                        <button>-</button>{item.quantity}<button>+</button>
+                        <h2 className="price">{item.price.toLocaleString()}</h2>                                
+                    <div id={"cart_buttons_" + props.order.indexOf(item)} className="buttons">
+                    <img onClick={props.removeQuantity} src={signRemove} alt="" />     {item.quantity}
+                    <img onClick={props.addQuantity} src={signAdd} alt="" />
                     </div>
                     </div>
                 </div>
-
             </li>
          })}
         </>
@@ -28,16 +29,24 @@ const CartItems = (props) => {
 }
 
 const Cart = (props) => {
+    let total = props.order.reduce((total,curr) => {
+                return total + (curr.price * curr.quantity);
+            },0);
     return(
         <div onClick={props.hideCart} id="background"  className="cart-div">
             <div className="cart">
                 <h1>Your shopping cart</h1>
                 <ul className="cart-items">
-                <CartItems order={props.order}/>
+                <CartItems removeQuantity={props.removeQuantity} addQuantity={props.addQuantity} order={props.order}/>
 
                 </ul>
-            </div>
+            <div>
+                <h1 clas>Total: <span className="price">{total.toLocaleString()}</span>
+                </h1>
+            </div>  
+            <button>Checkout</button>
 
+            </div>
         </div>
     )
 }

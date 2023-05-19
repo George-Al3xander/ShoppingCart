@@ -14,6 +14,7 @@ import NavBar from './components/NavBar';
 import { Route,Routes, Link } from "react-router-dom"
 import Catalog from "./components/Catalog"
 import Homepage from "./components/Homepage"
+import { useEffect } from "react"
 
 
 
@@ -24,73 +25,159 @@ function App() {
         name: "Bulova Lunar Pilot",
         price: 425,
         quantity: 1,
+        id: "watch1",
+        hadBeenAdded: false,
         img: watch1
       },
       {
         name: "Tissot PRX Chrono",
         price: 1825,
         quantity: 1,
+        id: "watch2",
+        hadBeenAdded: false,
         img: watch2
       },
       {
         name: "Breitling Premier B01",
         price: 2245,
         quantity: 1,
+        id: "watch3",
+        hadBeenAdded: false,
         img: watch3
       },
       {
         name: "Frederique Constant Flyback Chronograph Manufacture",
         price: 4295 ,
         quantity: 1,
+        id: "watch4",
+        hadBeenAdded: false,
         img: watch4
       },
       {
         name: 'Omega Speedmaster Professional "Moonwatch"',
         price: 5250,
         quantity: 1,
+        id: "watch5",
+        hadBeenAdded: false,
         img: watch5
       },
       {
         name: "Hamilton Intra-Matic Auto Chrono ",
         price: 8500,
         quantity: 1,
+        id: "watch6",
+        hadBeenAdded: false,
         img: watch6
       },
       {
         name: "Tissot Seastar 2000 Powermatic 80",
         price: 1025,
         quantity: 1,
+        id: "watch7",
+        hadBeenAdded: false,
         img: watch7
       },
       {
         name: "Citizen Promaster Diver Gold Edition",
         price: 1050,
         quantity: 1,
+        id: "watch8",
+        hadBeenAdded: false,
         img: watch8
       },
       {
         name: "Zodiac Super Sea Wolf World Time",
         price: 1795,
         quantity: 1,
+        id: "watch9",
+        hadBeenAdded: false,
         img: watch9
       },
     ]);
 
-
-    const[total, setTotal] = useState(0);
-    const[totalQuantity, setTotalQuantity] = useState(0);
+       
     const[order, setOrder] = useState([]);
     const[isCartShown, setIsCartShown] = useState(false);
 
+    const showMsg = (obj) => {
+      let tempArray = [...products];
+      // setTimeout(()=> {   
+
+      //   for(let product of tempArray) {
+      //     if(obj.id == product.id) {
+      //       product.hadBeenAdded = false;
+      //     }
+      //   }
+      // setProducts(tempArray);
+      // console.log(2);
+      // },1000)
+
+      console.log(1);
+
+
+      for(let product of tempArray) {
+        if(obj.id == product.id) {
+          product.hadBeenAdded = true;
+        }
+      }
+      setProducts(tempArray);      
+      
+    }
+
+    useEffect(()=>{
+      let obj = order[order.length-1];
+      if(obj != undefined) {
+        let tempArray = [...products];
+      setTimeout(()=> {   
+
+        for(let product of tempArray) {
+          if(obj.id == product.id) {
+            product.hadBeenAdded = false;
+          }
+        }
+      setProducts(tempArray);
+      console.log(2);
+      },1000)
+      }
+    },products)
+
+    
+
     const addToCart = (e) => {
+      let isSameProduct = false;
       let num = e.target.id;
       num = num.split("-")[1];
-     
       let tempArray = [...order];
-      tempArray.push(products[num]);
+
+      for(let item of tempArray) {
+          if(products[num].id == item.id) {
+            item.quantity += 1;
+            isSameProduct = true;
+          }        
+      }
+
+      if(isSameProduct == false) {
+        tempArray.push(products[num]);
+      }
+      showMsg(products[num]);
+      setOrder(tempArray);      
+    }
+
+    const addQuantity = (e) => {
+      let num = e.target.parentElement.id;
+      num = num.split("_")[2];
+      let tempArray = [...order];
+      tempArray[num].quantity += 1;
+      setOrder(tempArray);  
+    }
+
+    const removeQuantity = (e) => {
+      let num = e.target.parentElement.id;
+      num = num.split("_")[2];
+      let tempArray = [...order];
+      tempArray[num].quantity -= 1;
+      tempArray = tempArray.filter((item) => item.quantity > 0);
       setOrder(tempArray);
-      
-      setTotalQuantity((prev) => prev + 1);
     }
     
     const hideCart = (e) => {
@@ -99,14 +186,20 @@ function App() {
       }
     }
 
+    
+
     return(
       <div className="main">
-        <NavBar showCart={()=>{setIsCartShown(true)}} quantity={totalQuantity} />
+        <NavBar showCart={()=>{setIsCartShown(true)}} order={order} />
         <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/catalog" element={<Catalog products={products} onclick={addToCart} />} />
         </Routes>       
-        {isCartShown ? <Cart order={order} hideCart={hideCart}/> : null}
+        {isCartShown ? <Cart 
+          order={order} 
+          removeQuantity={removeQuantity} 
+          addQuantity={addQuantity} 
+          hideCart={hideCart}/> : null}
       </div>
       
     )
