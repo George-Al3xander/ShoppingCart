@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import addedSvg from  "../assets/icons/icon_added.svg"
+import addedSvg from  "../assets/icons/check_3.gif"
 
 const AddedMsg = (props) => {
     return(

@@ -26,7 +26,7 @@ function App() {
         price: 425,
         quantity: 1,
         id: "watch1",
-        hadBeenAdded: false,
+        hadBeenAdded: true,
         img: watch1
       },
       {
@@ -101,45 +101,27 @@ function App() {
 
     const showMsg = (obj) => {
       let tempArray = [...products];
-      // setTimeout(()=> {   
-
-      //   for(let product of tempArray) {
-      //     if(obj.id == product.id) {
-      //       product.hadBeenAdded = false;
-      //     }
-      //   }
-      // setProducts(tempArray);
-      // console.log(2);
-      // },1000)
-
-      console.log(1);
-
 
       for(let product of tempArray) {
         if(obj.id == product.id) {
           product.hadBeenAdded = true;
         }
       }
-      setProducts(tempArray);      
-      
-    }
+      setProducts(tempArray);
 
-    useEffect(()=>{
-      let obj = order[order.length-1];
       if(obj != undefined) {
         let tempArray = [...products];
-      setTimeout(()=> {   
-
+      setTimeout(()=> { 
         for(let product of tempArray) {
           if(obj.id == product.id) {
             product.hadBeenAdded = false;
           }
         }
-      setProducts(tempArray);
-      console.log(2);
+      setProducts(tempArray);      
       },1000)
-      }
-    },products)
+      }      
+      
+    }  
 
     
 
