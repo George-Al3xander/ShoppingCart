@@ -1,6 +1,7 @@
-import React from "react"
+import React  from "react"
 import signAdd from "../assets/icons/icon_sign_add.svg"
 import signRemove from "../assets/icons/icon_sign_remove.svg"
+import { Link } from "react-router-dom"
 const CartItems = (props) => {
 
     return(
@@ -44,7 +45,7 @@ const Cart = (props) => {
                 <h1 clas>Total: <span className="price">{total.toLocaleString()}</span>
                 </h1>
             </div>  
-            <button>Checkout</button>
+            <Link to="/" onClick={props.hideCart}><button  className="checkout" >Checkout</button></Link>
 
             </div>
         </div>

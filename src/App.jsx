@@ -26,7 +26,7 @@ function App() {
         price: 425,
         quantity: 1,
         id: "watch1",
-        hadBeenAdded: true,
+        hadBeenAdded: false,
         img: watch1
       },
       {
@@ -163,7 +163,7 @@ function App() {
     }
     
     const hideCart = (e) => {
-      if(e.target.id == "background") {
+      if(e.target.id == "background" || e.target.className == "checkout") {
         setIsCartShown(false);
       }
     }

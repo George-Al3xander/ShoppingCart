@@ -179,7 +179,7 @@ body {
 
 
 
-.btn-add {
+.btn-add, .checkout {
   color: white;
   background-color: black;
   width: 100%;
@@ -188,10 +188,20 @@ body {
   transition: all .5s ease;
 }
 
-.btn-add:hover {
+.btn-add:hover,.checkout:hover {
   cursor: pointer;
   transition: all .5s ease;
   letter-spacing: .3rem;
+}
+
+.checkout {
+  text-transform: uppercase;
+  font-size: var(--fs-medium);
+  margin-block: 1rem;
+}
+
+.checkout:hover {
+  opacity: .7;
 }
 
 .catalog {
@@ -337,10 +347,18 @@ body {
   font-size: var(--fs-medium);
   font-weight: 700;
   font-family: var(--ff-secondary);  
+  padding-block: 1rem;
+}
+
+.msg img {
+  margin-bottom: 2rem;
 }
 
 
 @media (max-width: 43.75rem) {
+  :root {
+    --fs-default: .85rem
+  }
   .catalog {   
     grid-template-columns: 1fr 60% 1fr;
     grid-template-rows: 1fr;
@@ -366,5 +384,75 @@ body {
     column-gap: 5rem;
     row-gap: 5rem;
   }  
+
+  .cart {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    justify-items: center;
+    
+  }
+
+  .cart-items {
+    margin-inline: auto;
+
+    padding: .7rem;
+  }
+
+  .cart-items li {
+    width: min-content;
+  }
+
   
+  .cart-item .buttons {
+    margin-inline: auto;
+  }
+
+
+  .homepage-content  {
+      justify-items: center;
+      gap: 3rem;
+  }
+
+  
+  .homepage button {
+    background-color: black;
+    width: 100%;
+    text-align: center;
+  }
+  
+}
+
+@media (max-width: 25rem) {
+  .cart-item {
+    padding: 0;
+    flex-direction: column;
+    width: min-content;
+    text-align: center;
+  }
+}
+
+@media (max-width: 33.125rem) {
+  aside{
+      display: none !important;
+    }
+    .homepage button {
+      background-color: transparent;
+    }
+    .homepage {
+      padding-top: 4rem;
+    }
+
+    .homepage button {
+      border-radius: 0;
+    }
+    .homepage-content {
+      padding: 0;
+    }
+    
+    .homepage a {
+      margin-inline: auto;
+      width: 100%;
+    }
 }

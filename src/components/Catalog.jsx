@@ -3,7 +3,7 @@ import addedSvg from  "../assets/icons/check_3.gif"
 
 const AddedMsg = (props) => {
     return(
-        <div key={"msg_" + props.divKey} className="msg">
+        <div id={props.itemId} key={"msg_" + props.divKey} className="msg watch">
             <img key={"msg_img_" + props.divKey} src={addedSvg} alt="" />
             <h1 key={"msg_h_" + props.divKey} >Added to your cart!</h1>
         </div>
@@ -17,7 +17,7 @@ const Catalog = (props) => {
         <ul className="catalog" >
             {props.products.map((product) => {
                 return product.hadBeenAdded == true ? 
-                <AddedMsg divKey={product.id} /> 
+                <AddedMsg  itemId={`watch_${props.products.indexOf(product) + 1}`} divKey={product.id} /> 
                     :                 
                 <li  className="watch" id={`watch_${props.products.indexOf(product) + 1}`} key={product.id}>                    
                 <img src={product.img} alt="Pic" />                    
